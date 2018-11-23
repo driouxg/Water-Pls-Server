@@ -1,4 +1,4 @@
-package com.waterpls.waterpls.model;
+package com.waterpls.waterpls.domain;
 
 public class User {
 

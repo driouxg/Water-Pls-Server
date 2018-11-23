@@ -42,7 +42,7 @@ public class HibernateConf {
   public LocalSessionFactoryBean sessionFactory() {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource());
-    sessionFactory.setPackagesToScan("com.waterpls.waterpls.model");
+    sessionFactory.setPackagesToScan("com.waterpls.waterpls.domain");
     sessionFactory.setHibernateProperties(hibernateProperties());
 
     return sessionFactory;
@@ -68,7 +68,6 @@ public class HibernateConf {
   }
 
   private final Properties hibernateProperties() {
-    System.out.println(hibernateDialect);
     Properties hibernateProperties = new Properties();
     hibernateProperties.setProperty(
         "hibernate.hbm2ddl.auto", hibernateAuto);

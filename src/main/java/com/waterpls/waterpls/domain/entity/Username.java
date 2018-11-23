@@ -1,14 +1,18 @@
-package com.waterpls.waterpls.model.entity;
+package com.waterpls.waterpls.domain.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import org.hibernate.annotations.DynamicUpdate;
+import javax.persistence.Table;
 
-@DynamicUpdate
+@Entity
+@Table(name = "my_first_table")
 public class Username {
 
   @Id
   private Integer id;
 
+  @Column(name = "username")
   private String username;
 
   public Integer getId() {

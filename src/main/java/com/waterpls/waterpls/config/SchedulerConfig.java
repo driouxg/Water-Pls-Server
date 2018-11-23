@@ -1,6 +1,6 @@
 package com.waterpls.waterpls.config;
 
-import com.waterpls.waterpls.model.UserResponse;
+import com.waterpls.waterpls.domain.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
