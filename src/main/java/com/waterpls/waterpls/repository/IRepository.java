@@ -1,7 +1,20 @@
 package com.waterpls.waterpls.repository;
 
-import com.waterpls.waterpls.domain.entity.Username;
+import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface IRepository {
-  void commitUser(Username username);
+
+  void persist(Object o);
+
+  <T> T merge(final T o);
+
+  <T> void saveOrUpdate(final T o);
+
+  void delete(final Object o);
+
+  <T> T get(final Class<T> type, final long id);
+
+  <T> List<T> getAll(final Class<T> type);
 }
