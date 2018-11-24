@@ -15,6 +15,6 @@ public class UserController {
   public UserResponse getUser(User user) {
     System.out.println("Reached User!");
 
-    return new UserResponse("Hi " + user.getName());
+    return new UserResponse("Hi: " + user.getName());
   }
 }
