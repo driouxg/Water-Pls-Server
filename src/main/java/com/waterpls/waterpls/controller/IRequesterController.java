@@ -1,6 +1,6 @@
 package com.waterpls.waterpls.controller;
 
-public interface Donator {
+public interface IRequesterController {
 
   void register();
 

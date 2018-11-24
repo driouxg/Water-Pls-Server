@@ -17,17 +17,4 @@ public class UserController {
 
     return new UserResponse("Hi " + user.getName());
   }
-
-  @MessageMapping("/")
-  public String ping(String string) {
-    System.out.println("PING!!!!");
-    return "wow";
-  }
-
-  @MessageMapping("/ping1")
-  @SendTo("/the/pinger")
-  public String ping() {
-    System.out.println("POOOOOOOOONG!!!");
-    return "wow";
-  }
 }
