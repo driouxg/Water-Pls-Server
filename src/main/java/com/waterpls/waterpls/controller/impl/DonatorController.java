@@ -1,8 +1,8 @@
 package com.waterpls.waterpls.controller.impl;
 
 import com.waterpls.waterpls.controller.IDonatorController;
+import com.waterpls.waterpls.domain.dto.DonaterDTO;
 import com.waterpls.waterpls.domain.singleton.SessionFactorySingleton;
-import com.waterpls.waterpls.domain.value.DonaterVO;
 import com.waterpls.waterpls.repository.IRepository;
 import com.waterpls.waterpls.repository.impl.HibernateRepository;
 import com.waterpls.waterpls.service.RegistrationService;
@@ -10,7 +10,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@MessageMapping("/donator")
+@MessageMapping("/donater")
 public class DonatorController implements IDonatorController {
 
   private IRepository repository;
@@ -21,8 +21,8 @@ public class DonatorController implements IDonatorController {
   }
 
   @MessageMapping("/register")
-  public void register(DonaterVO donator) {
-    RegistrationService registrationService = new RegistrationService(repository, donator);
+  public void register(DonaterDTO donater) {
+    RegistrationService registrationService = new RegistrationService(repository, donater);
     registrationService.register();
   }
 

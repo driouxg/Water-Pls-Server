@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class DonatorEntity {
+public class DonaterEntity {
 
   @Id
   private Integer id;

@@ -1,38 +1,46 @@
 package com.waterpls.waterpls.service;
 
-import com.waterpls.waterpls.domain.value.DonaterVO;
+import com.waterpls.waterpls.domain.dto.DonaterDTO;
+import com.waterpls.waterpls.domain.entity.DonaterEntity;
 import com.waterpls.waterpls.repository.IRepository;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-@Service
 public class RegistrationService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationService.class);
 
   private IRepository repository;
-  private DonaterVO donator;
+  private DonaterDTO donaterDTO;
+  private DonaterEntity donaterEntity;
 
-  public RegistrationService(IRepository repository, DonaterVO donater) {
+  public RegistrationService(IRepository repository, DonaterDTO donaterDTO) {
     LOGGER.info("Registering new Donator!");
-    if(donater == null) {
-      LOGGER.error("Donator is null :(");
-    } else {
-      LOGGER.info("Donator is not null :D");
-    }
 
     this.repository = repository;
-    this.donator = donater;
+    this.donaterDTO = donaterDTO;
+    donaterEntity = convertDTOToEntity();
+
+    donaterEntity.setId(1);
+    System.out.println("Id: " + donaterEntity.getId());
+    System.out.println("FirstName: " + donaterEntity.getFirstName());
+    System.out.println("LastName: " + donaterEntity.getLastName());
+    System.out.println("Latitude: " + donaterEntity.getLocation().getLatitude());
   }
 
   public void register() {
     if (!isAlreadyRegistered()) {
-      repository.persist(donator);
+      repository.persist(donaterEntity);
     }
   }
 
   private boolean isAlreadyRegistered() {
     return false;
+  }
+
+  private DonaterEntity convertDTOToEntity() {
+    ModelMapper modelMapper = new ModelMapper();
+    return modelMapper.map(donaterDTO, DonaterEntity.class);
   }
 }

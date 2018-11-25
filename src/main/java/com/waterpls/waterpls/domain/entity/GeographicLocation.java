@@ -1,11 +1,11 @@
 package com.waterpls.waterpls.domain.entity;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "geographic_location")
+@Embeddable
 public class GeographicLocation {
 
   @Id

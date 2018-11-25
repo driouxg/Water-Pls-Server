@@ -1,7 +1,6 @@
 package com.waterpls.waterpls.domain.value;
 
 import com.waterpls.waterpls.domain.entity.GeographicLocation;
-import org.springframework.stereotype.Component;
 
 public class DonaterVO extends ValueObject {
 
