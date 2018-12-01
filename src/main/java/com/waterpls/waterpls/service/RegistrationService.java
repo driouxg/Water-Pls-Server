@@ -44,7 +44,7 @@ public class RegistrationService {
     List<DonaterEntity> entities = repository.getAll(DonaterEntity.class);
 
     for (DonaterEntity entity : entities) {
-      System.out.println(entity);
+      LOGGER.info(entity.getLocation().getLatitude());
     }
 
     return false;

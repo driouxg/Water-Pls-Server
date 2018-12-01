@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ValueObject {
+public abstract class ValueObject {
 
   private Iterable<Object> GetEqualityComponents() {
     List<Object> list = new ArrayList<>();
