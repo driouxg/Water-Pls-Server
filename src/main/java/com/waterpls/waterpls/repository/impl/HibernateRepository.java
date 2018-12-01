@@ -7,10 +7,14 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@Transactional
 public class HibernateRepository implements IRepository {
 
   private SessionFactory sessionFactory;
@@ -23,6 +27,13 @@ public class HibernateRepository implements IRepository {
     try (CloseableSession session = createCloseableSession();
         CloseableTransaction transaction = createCloseableTransaction(session)) {
       session.getSession().persist(o);
+    }
+  }
+
+  public void save(Object o) {
+    try (CloseableSession session = createCloseableSession();
+        CloseableTransaction transaction = createCloseableTransaction(session)) {
+      session.getSession().save(o);
     }
   }
 

@@ -8,6 +8,8 @@ public interface IRepository {
 
   void persist(Object o);
 
+  void save(Object o);
+
   <T> T merge(final T o);
 
   <T> void saveOrUpdate(final T o);

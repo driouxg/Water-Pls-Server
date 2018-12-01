@@ -1,6 +1,11 @@
 package com.waterpls.waterpls.controller.impl;
 
 import com.waterpls.waterpls.controller.IRequesterController;
+import com.waterpls.waterpls.domain.dto.RequesterDTO;
+import com.waterpls.waterpls.domain.singleton.SessionFactorySingleton;
+import com.waterpls.waterpls.repository.IRepository;
+import com.waterpls.waterpls.repository.impl.HibernateRepository;
+import com.waterpls.waterpls.service.RegistrationService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 
@@ -8,9 +13,16 @@ import org.springframework.stereotype.Controller;
 @MessageMapping("/requester")
 public class RequesterController implements IRequesterController {
 
-  @MessageMapping("/register")
-  public void register() {
+  private IRepository repository;
 
+  public RequesterController(SessionFactorySingleton sessionFactorySingleton) {
+    this.repository = new HibernateRepository(sessionFactorySingleton.getSessionFactory());
+  }
+
+  @MessageMapping("/register")
+  public void register(RequesterDTO requester) {
+    RegistrationService registrationService = new RegistrationService(repository, requester);
+    registrationService.register();
   }
 
   @MessageMapping("/unregister")

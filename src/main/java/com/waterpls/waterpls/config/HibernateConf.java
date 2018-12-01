@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:persistence-mysql.properties")
+@PropertySource("classpath:hibernate.properties")
 public class HibernateConf {
 
   @Value("${jdbc.driverClassName}")
@@ -35,6 +35,9 @@ public class HibernateConf {
   @Value("${hibernate.dialect}")
   private String hibernateDialect;
 
+  @Value("${hibernate.show_sql}")
+  private String hibernateShowSQL;
+
   @Value("${hibernate.hbm2ddl.auto}")
   private String hibernateAuto;
 
@@ -42,7 +45,7 @@ public class HibernateConf {
   public LocalSessionFactoryBean sessionFactory() {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource());
-    sessionFactory.setPackagesToScan("com.waterpls.waterpls.domain");
+    sessionFactory.setPackagesToScan("com.waterpls.waterpls.domain.entity");
     sessionFactory.setHibernateProperties(hibernateProperties());
 
     return sessionFactory;
@@ -67,10 +70,15 @@ public class HibernateConf {
     return transactionManager;
   }
 
-  private final Properties hibernateProperties() {
+  @Bean
+  public Properties hibernateProperties() {
     Properties hibernateProperties = new Properties();
     hibernateProperties.setProperty(
         "hibernate.hbm2ddl.auto", hibernateAuto);
+    //hibernateProperties.setProperty("hibernate.show_sql", hibernateShowSQL);
+    //hibernateProperties.setProperty("hibernate.id.new_generator_mappings", "true");
+    //hibernateProperties.setProperty("org.hibernate", "TRACE");
+    //hibernateProperties.setProperty("bollucks", "sadfsdf");
     hibernateProperties.setProperty(
         "hibernate.dialect", hibernateDialect);
 

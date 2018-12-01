@@ -1,23 +1,28 @@
 package com.waterpls.waterpls.domain.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-@Embeddable
 public class GeographicLocation {
 
   @Id
-  private Integer id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
   private String latitude;
   private String longitude;
 
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(int id) {
     this.id = id;
   }
 

@@ -11,12 +11,11 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @MessageMapping("/donater")
-public class DonatorController implements IDonatorController {
+public class DonaterController implements IDonatorController {
 
   private IRepository repository;
 
-  public DonatorController() {
-    SessionFactorySingleton sessionFactorySingleton = SessionFactorySingleton.getInstance();
+  public DonaterController(SessionFactorySingleton sessionFactorySingleton) {
     this.repository = new HibernateRepository(sessionFactorySingleton.getSessionFactory());
   }
 

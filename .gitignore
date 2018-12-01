@@ -24,4 +24,4 @@
 /nbdist/
 /.nb-gradle/
 
-persistence-mysql.properties
+hibernate.properties
