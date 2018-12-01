@@ -2,17 +2,10 @@ package com.waterpls.waterpls.domain.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class DonaterEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+public class DonaterEntity extends RootEntity {
 
   private String firstName;
 
@@ -20,14 +13,6 @@ public class DonaterEntity {
 
   @OneToOne(cascade = CascadeType.ALL)
   private GeographicLocation location;
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public String getFirstName() {
     return firstName;

@@ -7,6 +7,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class RootEntity {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;

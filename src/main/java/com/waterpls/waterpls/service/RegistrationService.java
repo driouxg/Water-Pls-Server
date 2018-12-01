@@ -5,6 +5,7 @@ import com.waterpls.waterpls.domain.dto.RequesterDTO;
 import com.waterpls.waterpls.domain.entity.DonaterEntity;
 import com.waterpls.waterpls.domain.entity.RequesterEntity;
 import com.waterpls.waterpls.repository.IRepository;
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,9 +36,17 @@ public class RegistrationService {
     if (!isAlreadyRegistered()) {
       repository.persist(donaterEntity);
     }
+    isAlreadyRegistered();
   }
 
   private boolean isAlreadyRegistered() {
+
+    List<DonaterEntity> entities = repository.getAll(DonaterEntity.class);
+
+    for (DonaterEntity entity : entities) {
+      System.out.println(entity);
+    }
+
     return false;
   }
 

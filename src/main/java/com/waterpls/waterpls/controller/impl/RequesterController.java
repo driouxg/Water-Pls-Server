@@ -2,6 +2,7 @@ package com.waterpls.waterpls.controller.impl;
 
 import com.waterpls.waterpls.controller.IRequesterController;
 import com.waterpls.waterpls.domain.dto.RequesterDTO;
+import com.waterpls.waterpls.domain.entity.DonaterEntity;
 import com.waterpls.waterpls.domain.singleton.SessionFactorySingleton;
 import com.waterpls.waterpls.repository.IRepository;
 import com.waterpls.waterpls.repository.impl.HibernateRepository;
@@ -32,6 +33,6 @@ public class RequesterController implements IRequesterController {
 
   @MessageMapping("/search")
   public void search() {
-
+    repository.getAll(DonaterEntity.class);
   }
 }
