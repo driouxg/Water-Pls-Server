@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DonaterDTO {
 
-  private String firstName;
-  private String lastName;
+  private NameDTO firstName;
+  private NameDTO lastName;
   private GeographicLocationDTO location;
 
   @JsonCreator
-  public DonaterDTO(@JsonProperty("firstName") String firstName,
-      @JsonProperty("lastName") String lastName,
+  public DonaterDTO(@JsonProperty("firstName") NameDTO firstName,
+      @JsonProperty("lastName") NameDTO lastName,
       @JsonProperty("location") GeographicLocationDTO location) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.location = location;
   }
 
-  public String getFirstName() {
+  public NameDTO getFirstName() {
     return firstName;
   }
 
-  public String getLastName() {
+  public NameDTO getLastName() {
     return lastName;
   }
 

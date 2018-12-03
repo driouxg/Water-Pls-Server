@@ -3,7 +3,7 @@ package com.waterpls.waterpls.domain.entity;
 import javax.persistence.Entity;
 
 @Entity
-public class GeographicLocation extends RootEntity {
+public class GeographicLocationEntity extends RootEntity {
 
   private String latitude;
   private String longitude;

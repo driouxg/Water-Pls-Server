@@ -22,4 +22,9 @@ public class NameValidator {
     }
   }
 
+  public void hasCharacters() {
+    if (name.length() <= 0) {
+      throw new NameException("Invalid name: name is empty");
+    }
+  }
 }

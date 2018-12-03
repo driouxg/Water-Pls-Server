@@ -1,6 +1,7 @@
 package com.waterpls.waterpls.service;
 
 import com.waterpls.waterpls.domain.dto.DonaterDTO;
+import com.waterpls.waterpls.domain.dto.NameDTO;
 import com.waterpls.waterpls.domain.dto.RequesterDTO;
 import com.waterpls.waterpls.domain.entity.DonaterEntity;
 import com.waterpls.waterpls.domain.entity.RequesterEntity;
@@ -23,34 +24,26 @@ public class RegistrationService {
   public RegistrationService(IRepository repository, DonaterDTO donaterDTO) {
     this.repository = repository;
     this.donaterDTO = donaterDTO;
-    donaterEntity = convertDTOToEntity(DonaterEntity.class, donaterDTO);
+    donaterEntity = convertDTOToEntity(donaterDTO, DonaterEntity.class);
   }
 
   public RegistrationService(IRepository repository, RequesterDTO requesterDTO) {
     this.repository = repository;
     this.requesterDTO = requesterDTO;
-    requesterEntity = convertDTOToEntity(RequesterEntity.class, requesterDTO);
+    requesterEntity = convertDTOToEntity(requesterDTO, RequesterEntity.class);
   }
 
   public void register() {
     if (!isAlreadyRegistered()) {
       repository.persist(donaterEntity);
     }
-    isAlreadyRegistered();
   }
 
   private boolean isAlreadyRegistered() {
-
-    List<DonaterEntity> entities = repository.getAll(DonaterEntity.class);
-
-    for (DonaterEntity entity : entities) {
-      LOGGER.info(entity.getLocation().getLatitude());
-    }
-
     return false;
   }
 
-  private <T> T convertDTOToEntity(Class<T> clazz, Object dto) {
+  private <T> T convertDTOToEntity(Object dto, Class<T> clazz) {
     ModelMapper modelMapper = new ModelMapper();
     return modelMapper.map(dto, clazz);
   }

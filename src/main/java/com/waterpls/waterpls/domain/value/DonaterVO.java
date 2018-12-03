@@ -1,15 +1,15 @@
 package com.waterpls.waterpls.domain.value;
 
-import com.waterpls.waterpls.domain.entity.GeographicLocation;
+import com.waterpls.waterpls.domain.entity.GeographicLocationEntity;
 
 public class DonaterVO extends ValueObject {
 
   private String firstName;
   private String lastName;
-  private GeographicLocation location;
+  private GeographicLocationEntity location;
 
   public DonaterVO(String firstName, String lastName,
-      GeographicLocation location) {
+      GeographicLocationEntity location) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.location = location;
@@ -23,7 +23,7 @@ public class DonaterVO extends ValueObject {
     return lastName;
   }
 
-  public GeographicLocation getLocation() {
+  public GeographicLocationEntity getLocation() {
     return location;
   }
 }
