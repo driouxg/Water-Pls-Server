@@ -1,6 +1,6 @@
 package com.waterpls.waterpls.domain.entity;
 
-import com.waterpls.waterpls.domain.dto.NameDTO;
+import com.waterpls.waterpls.domain.value.GeographicLocationVO;
 import com.waterpls.waterpls.domain.value.NameVO;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -14,15 +14,33 @@ import javax.persistence.OneToOne;
 public class DonaterEntity extends RootEntity {
 
   @Embedded
-  @AttributeOverrides({@AttributeOverride(name="name", column = @Column(name = "first_name"))})
+  @AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "first_name"))})
   private NameEntity firstName;
 
   @Embedded
-  @AttributeOverrides({@AttributeOverride(name="name", column = @Column(name = "last_name"))})
+  @AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "last_name"))})
   private NameEntity lastName;
 
   @OneToOne(cascade = CascadeType.ALL)
   private GeographicLocationEntity location;
+
+  public DonaterEntity() {
+
+  }
+
+  public DonaterEntity(NameEntity firstName, NameEntity lastName,
+      GeographicLocationEntity location) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.location = location;
+  }
+
+  public DonaterEntity(NameVO firstName, NameVO lastName,
+      GeographicLocationVO location) {
+    this.firstName = new NameEntity(firstName.getName());
+    this.lastName = new NameEntity(lastName.getName());
+    this.location = new GeographicLocationEntity(location);
+  }
 
   public NameEntity getFirstName() {
     return firstName;

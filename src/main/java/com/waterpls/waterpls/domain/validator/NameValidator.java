@@ -12,7 +12,7 @@ public class NameValidator {
 
   public void isAlphaNumeric() {
     if (!name.matches("[a-zA-Z0-9]+")) {
-      throw new NameException("Invalid name: is not alphaNumeric.");
+      throw new NameException("Invalid value: is not alphaNumeric.");
     }
   }
 

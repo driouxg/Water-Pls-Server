@@ -5,29 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GeographicLocationDTO {
 
-  private String latitude;
-  private String longitude;
+  private GeoCoordinateDTO latitude;
+  private GeoCoordinateDTO longitude;
 
   @JsonCreator
-  public GeographicLocationDTO(@JsonProperty("latitude") String latitude,
-      @JsonProperty("longitude") String longitude) {
+  public GeographicLocationDTO(@JsonProperty("latitude") GeoCoordinateDTO latitude,
+      @JsonProperty("longitude") GeoCoordinateDTO longitude) {
     this.latitude = latitude;
     this.longitude = longitude;
   }
 
-  public String getLatitude() {
+  public GeoCoordinateDTO getLatitude() {
     return latitude;
   }
 
-  /*public void setLatitude(String latitude) {
-    this.latitude = latitude;
-  }*/
-
-  public String getLongitude() {
+  public GeoCoordinateDTO getLongitude() {
     return longitude;
   }
-
-  /*public void setLongitude(String longitude) {
-    this.longitude = longitude;
-  }*/
 }
