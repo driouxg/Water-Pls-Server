@@ -19,4 +19,6 @@ public interface IRepository {
   <T> T get(final Class<T> type, final long id);
 
   <T> List<T> getAll(final Class<T> type);
+
+  <T> List<T> findObject(Class<T> type, String field, Object o);
 }

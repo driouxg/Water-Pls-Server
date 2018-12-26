@@ -1,5 +1,6 @@
 package com.waterpls.waterpls.domain.entity;
 
+import com.waterpls.waterpls.domain.dto.GeoCoordinateDTO;
 import com.waterpls.waterpls.domain.value.GeographicLocationVO;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -13,40 +14,40 @@ public class GeographicLocationEntity extends RootEntity {
   @Embedded
   @AttributeOverrides({
       @AttributeOverride(name = "coordinate", column = @Column(name = "latitude"))})
-  private GeoCoordinateEntity latitude;
+  private GeoCoordinateDTO latitude;
 
   @Embedded
   @AttributeOverrides({
       @AttributeOverride(name = "coordinate", column = @Column(name = "longitude"))})
-  private GeoCoordinateEntity longitude;
+  private GeoCoordinateDTO longitude;
 
   public GeographicLocationEntity() {
 
   }
 
   public GeographicLocationEntity(GeographicLocationVO geographicLocationVO) {
-    latitude = new GeoCoordinateEntity(geographicLocationVO.getLatitude());
-    longitude = new GeoCoordinateEntity(geographicLocationVO.getLongitude());
+    latitude = new GeoCoordinateDTO(geographicLocationVO.getLatitude());
+    longitude = new GeoCoordinateDTO(geographicLocationVO.getLongitude());
   }
 
-  public GeographicLocationEntity(GeoCoordinateEntity latitude, GeoCoordinateEntity longitude) {
+  public GeographicLocationEntity(GeoCoordinateDTO latitude, GeoCoordinateDTO longitude) {
     this.latitude = latitude;
     this.longitude = longitude;
   }
 
-  public GeoCoordinateEntity getLatitude() {
+  public GeoCoordinateDTO getLatitude() {
     return latitude;
   }
 
-  public void setLatitude(GeoCoordinateEntity latitude) {
+  public void setLatitude(GeoCoordinateDTO latitude) {
     this.latitude = latitude;
   }
 
-  public GeoCoordinateEntity getLongitude() {
+  public GeoCoordinateDTO getLongitude() {
     return longitude;
   }
 
-  public void setLongitude(GeoCoordinateEntity longitude) {
+  public void setLongitude(GeoCoordinateDTO longitude) {
     this.longitude = longitude;
   }
 }

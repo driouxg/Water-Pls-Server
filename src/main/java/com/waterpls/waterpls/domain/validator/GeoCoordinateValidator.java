@@ -1,5 +1,6 @@
 package com.waterpls.waterpls.domain.validator;
 
+import com.waterpls.waterpls.domain.dto.GeoCoordinateDTO;
 import com.waterpls.waterpls.domain.entity.GeoCoordinateEntity;
 import com.waterpls.waterpls.domain.exception.GeoCoordinateException;
 
@@ -13,6 +14,10 @@ public class GeoCoordinateValidator {
 
   public GeoCoordinateValidator(GeoCoordinateEntity entity) {
     coordinate = entity.getCoordinate();
+  }
+
+  public GeoCoordinateValidator(GeoCoordinateDTO geoCoordinateDTO) {
+    coordinate = geoCoordinateDTO.getCoordinate();
   }
 
   public void validateRange() {

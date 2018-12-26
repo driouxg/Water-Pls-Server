@@ -22,6 +22,11 @@ public class NameValidator {
     }
   }
 
+  public void hasNoWhitespace() {
+    if(name.contains(" "))
+    throw new NameException("Invalid name: must not contain whitespace");
+  }
+
   public void hasCharacters() {
     if (name.length() <= 0) {
       throw new NameException("Invalid name: name is empty");

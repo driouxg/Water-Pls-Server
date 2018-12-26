@@ -1,30 +1,30 @@
-package com.waterpls.waterpls.service;
+package com.waterpls.waterpls.service.impl;
 
-import com.waterpls.waterpls.domain.dto.DonaterDTO;
-import com.waterpls.waterpls.domain.dto.NameDTO;
+import com.waterpls.waterpls.domain.dto.DonatorDTO;
 import com.waterpls.waterpls.domain.dto.RequesterDTO;
-import com.waterpls.waterpls.domain.entity.DonaterEntity;
+import com.waterpls.waterpls.domain.entity.DonatorEntity;
 import com.waterpls.waterpls.domain.entity.RequesterEntity;
 import com.waterpls.waterpls.repository.IRepository;
+import com.waterpls.waterpls.service.IRegistrationService;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RegistrationService {
+public class RegistrationService implements IRegistrationService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationService.class);
 
   private IRepository repository;
-  private DonaterDTO donaterDTO;
-  private DonaterEntity donaterEntity;
+  private DonatorDTO donaterDTO;
+  private DonatorEntity donaterEntity;
   private RequesterEntity requesterEntity;
   private RequesterDTO requesterDTO;
 
-  public RegistrationService(IRepository repository, DonaterDTO donaterDTO) {
+  public RegistrationService(IRepository repository, DonatorDTO donaterDTO) {
     this.repository = repository;
     this.donaterDTO = donaterDTO;
-    donaterEntity = convertDTOToEntity(donaterDTO, DonaterEntity.class);
+    donaterEntity = convertDTOToEntity(donaterDTO, DonatorEntity.class);
   }
 
   public RegistrationService(IRepository repository, RequesterDTO requesterDTO) {
@@ -39,8 +39,12 @@ public class RegistrationService {
     }
   }
 
+  private List<DonatorEntity> query() {
+    return repository.findObject(DonatorEntity.class, "username", donaterDTO.getUsername());
+  }
+
   private boolean isAlreadyRegistered() {
-    return false;
+    return query().size() > 0;
   }
 
   private <T> T convertDTOToEntity(Object dto, Class<T> clazz) {

@@ -6,6 +6,7 @@ import com.waterpls.waterpls.repository.IRepository;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import org.hibernate.SessionFactory;
@@ -81,6 +82,25 @@ public class HibernateRepository implements IRepository {
     try (CloseableSession session = createCloseableSession()) {
       Transaction transaction = session.getSession().beginTransaction();
       return session.getSession().get(type, id);
+    }
+  }
+
+  public <T> List<T> findObject(Class<T> type, String field, Object o) {
+    try (CloseableSession session = createCloseableSession();
+        CloseableTransaction transaction = createCloseableTransaction(session)) {
+
+      CriteriaBuilder builder = session.getSession().getCriteriaBuilder();
+
+      CriteriaQuery query = builder.createQuery();
+
+      Root<T> root = query.from(type);
+
+      query.select(root);
+      Predicate cond = builder.equal(root.get(field), o);
+      query.where(cond);
+
+      Query<T> q = session.getSession().createQuery(query);
+      return q.getResultList();
     }
   }
 

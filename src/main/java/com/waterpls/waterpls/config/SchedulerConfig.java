@@ -14,8 +14,13 @@ public class SchedulerConfig {
   @Autowired
   SimpMessagingTemplate template;
 
-  @Scheduled(fixedDelay = 3000)
-  public void sendAdhocMessages() {
-    template.convertAndSend("/topic/user", new UserResponse("Fixed Delay Scheduler"));
-  }
+//  @Scheduled(fixedDelay = 3000)
+//  public void sendAdhocMessages() {
+//    template.convertAndSend("/topic/user", new UserResponse("Fixed Delay Scheduler"));
+//  }
+
+  //@Scheduled(fixedDelay = 3000)
+  //public void sendAdhocMessages() {
+  //  template.convertAndSend("/secured/user/queue/specific-user", new UserResponse("Fixed fsdf"));
+  //}
 }

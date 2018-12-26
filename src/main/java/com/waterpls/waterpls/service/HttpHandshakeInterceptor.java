@@ -22,7 +22,6 @@ public class HttpHandshakeInterceptor implements HandshakeInterceptor {
 
       System.out.println("Session uri target: " + servletRequest.getURI());
       System.out.println("New Session connected: " + session.getId());
-
     }
     return true;
   }
@@ -31,6 +30,5 @@ public class HttpHandshakeInterceptor implements HandshakeInterceptor {
   public void afterHandshake(org.springframework.http.server.ServerHttpRequest serverHttpRequest,
       org.springframework.http.server.ServerHttpResponse serverHttpResponse,
       WebSocketHandler webSocketHandler, Exception e) {
-
   }
 }

@@ -1,5 +1,8 @@
 package com.waterpls.waterpls.domain.entity;
 
+import com.waterpls.waterpls.domain.dto.NameDTO;
+import com.waterpls.waterpls.domain.dto.PasswordDTO;
+import com.waterpls.waterpls.domain.dto.UsernameDTO;
 import com.waterpls.waterpls.domain.value.GeographicLocationVO;
 import com.waterpls.waterpls.domain.value.NameVO;
 import javax.persistence.AttributeOverride;
@@ -11,50 +14,75 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 @Entity
-public class DonaterEntity extends RootEntity {
+public class DonatorEntity extends RootEntity {
+
+  @Embedded
+  private UsernameDTO username;
+
+  @Embedded
+  private PasswordDTO password;
 
   @Embedded
   @AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "first_name"))})
-  private NameEntity firstName;
+  private NameDTO firstName;
 
   @Embedded
   @AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "last_name"))})
-  private NameEntity lastName;
+  private NameDTO lastName;
 
   @OneToOne(cascade = CascadeType.ALL)
   private GeographicLocationEntity location;
 
-  public DonaterEntity() {
+  public DonatorEntity() {
 
   }
 
-  public DonaterEntity(NameEntity firstName, NameEntity lastName,
+  public DonatorEntity(UsernameDTO username, PasswordDTO password, NameDTO firstName,
+      NameDTO lastName,
       GeographicLocationEntity location) {
+    this.username = username;
+    this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.location = location;
   }
 
-  public DonaterEntity(NameVO firstName, NameVO lastName,
+  public DonatorEntity(NameVO firstName, NameVO lastName,
       GeographicLocationVO location) {
-    this.firstName = new NameEntity(firstName.getName());
-    this.lastName = new NameEntity(lastName.getName());
+    this.firstName = new NameDTO(firstName.getName());
+    this.lastName = new NameDTO(lastName.getName());
     this.location = new GeographicLocationEntity(location);
   }
 
-  public NameEntity getFirstName() {
+  public UsernameDTO getUsername() {
+    return username;
+  }
+
+  public void setUsername(UsernameDTO username) {
+    this.username = username;
+  }
+
+  public PasswordDTO getPassword() {
+    return password;
+  }
+
+  public void setPassword(PasswordDTO password) {
+    this.password = password;
+  }
+
+  public NameDTO getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(NameEntity firstName) {
+  public void setFirstName(NameDTO firstName) {
     this.firstName = firstName;
   }
 
-  public NameEntity getLastName() {
+  public NameDTO getLastName() {
     return lastName;
   }
 
-  public void setLastName(NameEntity lastName) {
+  public void setLastName(NameDTO lastName) {
     this.lastName = lastName;
   }
 
